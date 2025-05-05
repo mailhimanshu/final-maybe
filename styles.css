@@ -1,0 +1,303 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background: url('saved.jpg') no-repeat center center fixed, linear-gradient(135deg, #ff99cc, #cc99ff);
+    background-size: cover;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    overflow: auto;
+    animation: bgPulse 10s infinite alternate;
+  }
+  @keyframes bgPulse { 0% { opacity: 0.8; } 100% { opacity: 1; } }
+  #mainDiv { width: 100%; height: 100%; position: relative; }
+  #loveHeart { float: left; width: 670px; height: 625px; }
+  #garden { width: 100%; height: 100%; cursor: pointer; }
+  #words { font-family: 'Dancing Script', cursive; width: 500px; font-size: 28px; color: #fff; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
+  #messages { display: none; text-align: center; font-size: 32px; }
+  #loveu { padding: 5px; font-size: 24px; margin-top: 80px; margin-right: 120px; text-align: right; display: none; }
+  #loveu .signature { margin-top: 10px; font-size: 22px; font-style: italic; cursor: pointer; }
+  #code { float: left; width: 440px; height: 400px; color: #fff; font-family: 'Roboto Mono', monospace; font-size: 14px; }
+  #code .comments { color: #66ff99; }
+  #code .space { margin-left: 7px; }
+  #heartspan { text-align: center; margin: 20px; }
+  #icon { font-size: 40px; color: #ff4d4d; margin: 10px; transition: transform 0.3s; }
+  #icon:hover { transform: scale(1.2); }
+  #buttons { text-align: center; margin-top: 20px; }
+  #buttons button {
+    padding: 12px 24px;
+    font-size: 16px;
+    margin: 8px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #6A0DAD, #D81B60);
+    border: 2px solid gold;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    min-width: 150px;
+  }
+  #buttons button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px gold;
+    animation: glow 1.5s infinite alternate;
+  }
+  @keyframes glow { 0% { box-shadow: 0 0 10px gold; } 100% { box-shadow: 0 0 20px gold; } }
+  #buttons i { margin-right: 8px; }
+  #errorMsg { width: 100%; text-align: center; font-size: 24px; position: absolute; top: 100px; left: 0; }
+  #popupModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    padding-top: 5%;
+    transition: opacity 0.5s;
+  }
+  #popupModal img { max-width: 90%; max-height: 80%; border: 5px solid gold; border-radius: 10px; }
+  #popupModal button { padding: 12px 24px; font-size: 18px; margin-top: 20px; background: gold; border: none; border-radius: 5px; color: #6A0DAD; font-weight: bold; }
+  #skipButton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background: rgba(106, 13, 173, 0.7);
+    color: white;
+    border: 2px solid gold;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 100;
+    transition: all 0.3s ease;
+  }
+  #skipButton:hover { background: rgba(123, 31, 162, 0.9); transform: scale(1.05); }
+  #quoteModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    text-align: center;
+    padding-top: 5%;
+    transition: opacity 0.5s;
+  }
+  #quoteModal .quote-content {
+    max-width: 80%;
+    margin: 0 auto;
+    background: rgba(106, 13, 173, 0.8);
+    padding: 30px;
+    border: 3px solid gold;
+    border-radius: 15px;
+    color: white;
+    font-size: 22px;
+    line-height: 1.6;
+    font-family: 'Dancing Script', cursive;
+  }
+  #quoteModal .signature { font-style: italic; margin-top: 20px; text-align: right; font-weight: bold; color: gold; }
+  #quoteModal button { padding: 12px 24px; font-size: 18px; margin-top: 20px; background: gold; border: none; border-radius: 5px; color: #6A0DAD; font-weight: bold; }
+  #timeline { display: none; margin: 20px auto; max-width: 600px; color: white; font-family: 'Dancing Script', cursive; font-size: 20px; text-align: center; }
+  #timeline div { margin: 10px 0; padding: 10px; background: rgba(106, 13, 173, 0.5); border-radius: 10px; }
+  #audioControls {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: rgba(106, 13, 173, 0.7);
+    border: 2px solid gold;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+  }
+  #audioControls button {
+    background: transparent;
+    border: none;
+    color: #ff4d4d;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 5px;
+    transition: all 0.3s;
+  }
+  #audioControls button:hover { transform: scale(1.2); }
+  #audioControls input[type="range"] {
+    width: 120px;
+    accent-color: gold;
+    cursor: pointer;
+  }
+  #audioControls input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: gold;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  #currentTime, #duration {
+    color: white;
+    font-size: 12px;
+    margin: 5px 0;
+  }
+  #lyricsSection {
+    margin: 20px auto;
+    max-width: 600px;
+    width: 90%;
+  }
+  #lyricsToggleBtn {
+    background: rgba(106, 13, 173, 0.7);
+    border: 2px solid gold;
+    border-radius: 10px;
+    padding: 8px 16px;
+    color: #ff4d4d;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+    transition: all 0.3s;
+    display: block;
+    margin: 10px auto;
+  }
+  #lyricsToggleBtn:hover { transform: scale(1.05); }
+  #lyricsContainer {
+    display: none;
+    background: rgba(106, 13, 173, 0.7);
+    border: 2px solid gold;
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  #lyricsContainer .lyric-line { margin: 5px 0; transition: all 0.3s; }
+  #lyricsContainer .current { color: gold; font-size: 24px; text-shadow: 0 0 5px rgba(255, 215, 0, 0.8); }
+  #favoriteLineBtn {
+    background: rgba(106, 13, 173, 0.7);
+    border: 2px solid gold;
+    border-radius: 10px;
+    padding: 8px 16px;
+    color: #ff4d4d;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+    transition: all 0.3s;
+    display: block;
+    margin: 10px auto;
+  }
+  #favoriteLineBtn:hover { transform: scale(1.05); }
+  #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+  #videoTestimonials {
+    margin: 20px auto;
+    max-width: 90%;
+    padding: 20px;
+    text-align: center;
+  }
+  #videoTestimonials h2 {
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
+  .video-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 100%;
+  }
+  .video-slide {
+    min-width: 100%;
+    position: relative;
+  }
+  .video-slide video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+    background: #000;
+  }
+  .video-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(106, 13, 173, 0.8);
+    color: white;
+    padding: 10px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(106, 13, 173, 0.7);
+    color: white;
+    border: 2px solid gold;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+  .slider-btn:hover {
+    background: rgba(123, 31, 162, 0.9);
+    transform: translateY(-50%) scale(1.1);
+  }
+  .slider-btn.prev {
+    left: 10px;
+  }
+  .slider-btn.next {
+    right: 10px;
+  }
+  @media (max-width: 768px) {
+    #loveHeart, #code { width: 100%; float: none; }
+    #content { width: 90%; margin: 10px auto; }
+    #words { width: 100%; font-size: 20px; left: 0; top: 150px; }
+    #loveu { margin-right: 0; font-size: 20px; }
+    #buttons button { font-size: 14px; padding: 10px 15px; min-width: 120px; }
+    #icon { font-size: 30px; }
+    #audioControls { top: 60px; right: 10px; width: 120px; }
+    #audioControls input[type="range"] { width: 100px; }
+    #lyricsSection { margin: 10px auto; }
+    #lyricsContainer { font-size: 18px; max-height: 150px; }
+    #lyricsContainer .current { font-size: 20px; }
+    #lyricsToggleBtn, #favoriteLineBtn { font-size: 14px; }
+    #videoTestimonials {
+      padding: 10px;
+    }
+    #videoTestimonials h2 {
+      font-size: 24px;
+    }
+    .video-container {
+      max-width: 100%;
+    }
+    .video-caption {
+      font-size: 16px;
+      padding: 8px;
+    }
+    .slider-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 18px;
+    }
+  }
