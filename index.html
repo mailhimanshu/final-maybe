@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>This one is for my Saily</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <button id="skipButton" onclick="skipAnimation()" aria-label="Skip animation">Skip Animation</button>
+  <div id="audioControls">
+    <button id="playPauseBtn" aria-label="Play or pause music">
+      <i id="playPauseIcon" class="fas fa-play"></i>
+    </button>
+    <button id="muteBtn" aria-label="Mute or unmute music">
+      <i id="muteIcon" class="fas fa-volume-up"></i>
+    </button>
+    <input type="range" id="volumeSlider" min="0" max="100" value="50" aria-label="Adjust volume">
+    <input type="range" id="seekSlider" min="0" max="100" value="0" aria-label="Seek song position">
+    <span id="currentTime">0:00</span>
+    <span id="duration">0:00</span>
+  </div>
+  <audio id="backgroundAudio" loop>
+    <source src="romantic_song.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="heartChime">
+    <source src="heart_chime.mp3" type="audio/mpeg">
+  </audio>
+  <div id="mainDiv">
+    <div id="content">
+      <div id="code">
+        <span class="comments">/**</span><br />
+        <span class="space"/><span class="comments">*THE CODE OF LOVE</span><br />
+        <span class="space"/><span class="comments">*/</span><br />
+        Hey Girl !<br />
+        Do you remember OUR first date ?<br />
+        <span class="comments">// 16 DEC 2022 . </span><br />
+        Since that day a spark begun;<br />
+        <span class="comments">// Your face Your Voice Your Words.</span><br />
+        Your everything got imprinted in my heart;<br />
+        As time went on;<br />
+        The Bond grew stronger and stronger;<br />
+        Journey from Infatuation to Love;<br />
+        We have traveled a long way together;<br />
+        There have been fights ;<br />
+        <span class="comments">// And I'm sure there will be more.</span><br />
+        But our Bond will always grow back Stronger;<br /><br />
+        All I want to say is:<br />
+        Baby, I will love you forever<br /><br />
+        Now If you want to hug me <br /><br />
+        you can touch the BUTTONS below<br /><br />
+        <div id="buttons">
+          <button onclick="window.open('https://www.instagram.com/logicallylogicc/', '_blank')" aria-label="Open Instagram">
+            <i class="fab fa-instagram"></i> Our Instagram 
+          </button>
+          <button onclick="window.open('https://drive.google.com/drive/folders/1gXy9ZboRBCOMsOyXcssi77EKjSr5k-Zl', '_blank')" aria-label="Open memories">
+            <i class="fas fa-image"></i> Our Memory 💎
+          </button>
+          <button onclick="window.open('https://mailhimanshu.github.io/nayaproject/', '_blank')" aria-label="More drama">
+            <i class="fas fa-heart"></i> More DRAMA ❤️
+          </button>
+          <button onclick="$('#popupModal').fadeIn();" aria-label="Show hug">
+            <i class="fas fa-hand-holding-heart"></i> Hug For You 🤗
+          </button>
+          <button onclick="window.open('https://mailhimanshu.github.io/vreihvreivnrihvr/', '_blank')" aria-label="For us">
+            <i class="fas fa-heart"></i> FOR uS 🫂
+          </button>
+          <button onclick="showQuote()" aria-label="Show surprise">
+            <i class="fas fa-surprise"></i> Surprise🎁
+          </button>
+          <button onclick="triggerHeartShower()" aria-label="Heart shower">
+            <i class="fas fa-heart"></i> Heart Shower 🌹
+          </button>
+        </div>
+      </div>
+      <div id="loveHeart">
+        <canvas id="garden"></canvas>
+        <div id="words">
+          <div id="messages">I Love You, Saily</div>
+          <div id="loveu">
+            Tere Ahkhon ke kajal mai khogaye the hum <br/>
+            Shayad tere ho gaye the hum <br/>
+            <div class="signature">- HIMANSHU</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="ourPromises" class="promises-section">
+      <h3>Our Promises</h3>
+      <div>I promise to always make you smile, no matter what. 😊</div>
+      <div>I promise to listen to you, even when words are hard to find. 🫂</div>
+      <div>I promise to cherish every moment with you, forever. 💖</div>
+      <div>I promise to be your biggest supporter and your best_______ . 🌟</div>
+    </div>
+    <div id="lyricsSection">
+      <button id="favoriteLineBtn" aria-label="Jump to Saily's favorite line">LYRICS ❤️</button>
+      <button id="lyricsToggleBtn" aria-label="Toggle lyrics"><i class="fas fa-chevron-down"></i> Lyrics</button>
+      <div id="lyricsContainer"></div>
+    </div>
+  </div>
+  <div id="popupModal">
+    <img src="giphy.gif" alt="Romantic hug animation" />
+    <br>
+    <button onclick="$('#popupModal').fadeOut();" aria-label="Close popup">Close</button>
+  </div>
+  <div id="quoteModal">
+    <div class="quote-content">
+      <p>
+        Jab tootne lage tere sapne sabhi<br>
+        Ya tanha lage bheed mein bhi<br>
+        Jab dil ho bhaari, par hasna ho zaroori<br>
+        Ya yaadon ki barsaat ho raat bhar puri<br>
+        Jab dukh kahe "ab saath nahin chhodunga"<br>
+        Aur khushi lage jaise kahin kho chuki<br>
+        Jab mehsoos ho duniya mein koi apna nahin<br>
+        Aur dil ki aawaaz bhi sunayi na de kahin<br>
+        Tab tu lena mera naam ek dua ki tarah<br>
+        Main rahunga tere saath ek hawa ki tarah
+      </p>
+      <div class="signature">-Himanshu2025</div>
+    </div>
+    <button onclick="$('#quoteModal').fadeOut();" aria-label="Close quote">Close</button>
+  </div>
+
+  <div id="videoTestimonials">s
+    <h2> Special Moments with Saily ❤️</h2>
+    <div class="video-container">
+      <div class="video-slider">
+        <div class="video-slide">
+          <video controls poster="video1.png">
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="video-caption">CUTE YOU </p>
+        </div>
+        <div class="video-slide">
+          <video controls poster="video2.png">
+            <source src="video2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="video-caption">Special Moments Together</p>
+        </div>
+        <div class="video-slide">
+          <video controls poster="video3.png">
+            <source src="video3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="video-caption">Forever and Always</p>
+        </div>
+        <div class="video-slide">
+          <video controls poster="video4.png">
+            <source src="video4.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="video-caption">Special Moments Together</p>
+        </div>
+<div class="video-slide">
+          <video controls poster="video5.png">
+            <source src="video5.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="video-caption">Special Moments Together</p>
+        </div>
+<div class="video-slide">
+          <video controls poster="video6.png">
+            <source src="video6.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="video-caption">Special Moments Together</p>
+        </div>
+      </div>
+      <button class="slider-btn prev" aria-label="Previous video"><i class="fas fa-chevron-left"></i></button>
+      <button class="slider-btn next" aria-label="Next video"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
