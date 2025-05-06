@@ -233,7 +233,8 @@ $(function () {
   var currentSlide = 0;
   var totalSlides = $('.video-slide').length;
   var slider = $('.video-slider');
-  
+  var slideWidth = $('.video-slide').width();
+
   function updateSlider() {
     slider.css('transform', 'translateX(-' + (currentSlide * 100) + '%)');
     
@@ -259,24 +260,28 @@ $(function () {
     updateSlider();
   });
 
-  // Touch support for mobile devices
+  // Touch support for mobile devices with improved responsiveness
   var touchStartX = 0;
   var touchEndX = 0;
+  var touchStartTime = 0;
 
   slider.on('touchstart', function(e) {
     touchStartX = e.originalEvent.touches[0].clientX;
+    touchStartTime = new Date().getTime();
   });
 
   slider.on('touchend', function(e) {
     touchEndX = e.originalEvent.changedTouches[0].clientX;
-    handleSwipe();
+    var touchEndTime = new Date().getTime();
+    handleSwipe(touchEndTime - touchStartTime);
   });
 
-  function handleSwipe() {
+  function handleSwipe(duration) {
     var swipeThreshold = 50;
     var diff = touchStartX - touchEndX;
+    var quickSwipe = duration < 250; // Fast swipe detection
     
-    if (Math.abs(diff) > swipeThreshold) {
+    if (Math.abs(diff) > swipeThreshold || quickSwipe) {
       if (diff > 0) {
         // Swipe left - next slide
         currentSlide = (currentSlide + 1) % totalSlides;
@@ -285,39 +290,17 @@ $(function () {
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
       }
       updateSlider();
-      startSliderInterval(); // Reset auto-advance timer after swipe
     }
   }
   
-  // Auto-advance slider every 8 seconds if videos aren't playing
-  var sliderInterval;
-  
-  function startSliderInterval() {
-    clearInterval(sliderInterval);
-    sliderInterval = setInterval(function() {
-      // Only auto-advance if no videos are playing
-      var anyVideoPlaying = false;
-      $('.video-slide video').each(function() {
-        if (!this.paused) {
-          anyVideoPlaying = true;
-        }
-      });
-      
-      if (!anyVideoPlaying) {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlider();
-      }
-    }, 8000);
-  }
-  
-  startSliderInterval();
-  
-  // Reset interval when user interacts with slider
+  // Pause all videos when switching slides
   $('.slider-btn').on('click', function() {
-    startSliderInterval();
+    $('.video-slide video').each(function() {
+      this.pause();
+    });
   });
-
-  // Add keyboard navigation for lyrics and video
+  
+  // Keyboard support for video navigation
   $(document).keydown(function(e) {
     switch(e.which) {
       case 37: // left arrow - previous lyric or video
@@ -436,7 +419,7 @@ function showCurrentLyric() {
   lines.eq(currentLyricIndex).addClass('current');
   
   var scrollTop = lines.eq(currentLyricIndex).position().top - container.height() / 2 + lines.eq(currentLyricIndex).height() / 2;
-  container.animate({ scrollTop: scrollTop }, 300);
+  container.animate({ scrollTop: scrollTop }, 500, 'swing');
   
   // Highlight with heart animation
   triggerLyricHeartEffect();
@@ -555,7 +538,10 @@ function startHeartAnimation() {
   };
 })(jQuery);
 
-function adjustCodePosition() { $('#code').css("margin-top", ($("#garden").height()-$("#code").height())/2); }
+function adjustCodePosition() { 
+  $('#code').css("margin-top", Math.max(($("#garden").height()-$("#code").height())/2, 10)); 
+}
+
 function adjustWordsPosition() { $('#words').css({ position:"absolute", top: $("#garden").position().top+195, left: $("#garden").position().left+70 }); }
 function showMessages() {
   adjustWordsPosition();
@@ -757,6 +743,34 @@ $(function(){
   var codeElement = document.getElementById('code');
   codeElement.setAttribute('data-original-html', codeElement.innerHTML);
   window.animationTimeout = setTimeout(function(){ startHeartAnimation(); }, 5000); 
+  
+  // Ensure content is visible properly based on device
+  function adjustContentPosition() {
+    var isMobile = $window.width() <= 768;
+    
+    if (isMobile) {
+      $("#content").css({
+        "margin-top": "20px",
+        "margin-left": "auto",
+        "margin-right": "auto"
+      });
+    } else {
+      $("#content").css({
+        "margin-top": Math.max(($window.height() - $("#content").height()) / 2 - 50, 20),
+        "margin-left": Math.max(($window.width() - $("#content").width()) / 2, 10)
+      });
+    }
+  }
+  
+  // Initial adjustment
+  adjustContentPosition();
+  
+  // Re-adjust on resize
+  $window.on('resize', function() {
+    adjustContentPosition();
+    adjustCodePosition();
+  });
+  
   adjustCodePosition(); 
   $("#code").typewriter(); 
 });
