@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -91,17 +91,27 @@
         </div>
       </div>
     </div>
-    <div id="ourPromises" class="promises-section">
-      <h3>Our Promises</h3>
-      <div>I promise to always make you smile, no matter what. 😊</div>
-      <div>I promise to listen to you, even when words are hard to find. 🫂</div>
-      <div>I promise to cherish every moment with you, forever. 💖</div>
-      <div>I promise to be your biggest supporter and your best_______ . 🌟</div>
+    <div style="clear: both;"></div>
+    <div id="ourPromises" style="margin: 20px auto; max-width: 600px; color: white; font-size: 20px; text-align: center;">
+      <h3 style="color: gold; margin-bottom: 15px;">My Promises</h3>
+      <div style="margin: 10px 0; padding: 10px; background: rgba(106, 13, 173, 0.5); border-radius: 10px;">I promise to always make you smile, no matter what. 😊</div>
+      <div style="margin: 10px 0; padding: 10px; background: rgba(106, 13, 173, 0.5); border-radius: 10px;">I promise to listen to you, even when words are hard to find. 🫂</div>
+      <div style="margin: 10px 0; padding: 10px; background: rgba(106, 13, 173, 0.5); border-radius: 10px;">I promise to cherish every moment with you, forever. 💖</div>
+      <div style="margin: 10px 0; padding: 10px; background: rgba(106, 13, 173, 0.5); border-radius: 10px;">I promise to be your biggest supporter and your best friend. 🌟</div>
     </div>
     <div id="lyricsSection">
       <button id="favoriteLineBtn" aria-label="Jump to Saily's favorite line">LYRICS ❤️</button>
       <button id="lyricsToggleBtn" aria-label="Toggle lyrics"><i class="fas fa-chevron-down"></i> Lyrics</button>
+      <button id="keyboardShortcutsBtn" aria-label="Show keyboard shortcuts"><i class="fas fa-keyboard"></i></button>
       <div id="lyricsContainer"></div>
+      <div id="slowLyricsControls">
+        <button id="slowLyricsBtn" aria-label="Play lyrics slowly"><i class="fas fa-heartbeat"></i> Slow Lyrics</button>
+        <div id="lyricNavigation">
+          <button id="prevLyricBtn" aria-label="Previous lyric"><i class="fas fa-chevron-left"></i></button>
+          <div id="currentLyricDisplay"></div>
+          <button id="nextLyricBtn" aria-label="Next lyric"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
     </div>
   </div>
   <div id="popupModal">
@@ -127,9 +137,8 @@
     </div>
     <button onclick="$('#quoteModal').fadeOut();" aria-label="Close quote">Close</button>
   </div>
-
-  <div id="videoTestimonials">s
-    <h2> Special Moments with Saily ❤️</h2>
+  <div id="videoTestimonials">
+    <h2>Special Moments with Saily ❤️</h2>
     <div class="video-container">
       <div class="video-slider">
         <div class="video-slide">
@@ -160,14 +169,14 @@
           </video>
           <p class="video-caption">Special Moments Together</p>
         </div>
-<div class="video-slide">
+        <div class="video-slide">
           <video controls poster="video5.png">
             <source src="video5.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
           <p class="video-caption">Special Moments Together</p>
         </div>
-<div class="video-slide">
+        <div class="video-slide">
           <video controls poster="video6.png">
             <source src="video6.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -179,3 +188,35 @@
       <button class="slider-btn next" aria-label="Next video"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
+  <div id="keyboardShortcutsModal">
+    <div class="shortcuts-content">
+      <h3>Keyboard Shortcuts</h3>
+      <div class="shortcut-row">
+        <div class="shortcut-key">←</div>
+        <div class="shortcut-desc">Previous Lyric / Video</div>
+      </div>
+      <div class="shortcut-row">
+        <div class="shortcut-key">→</div>
+        <div class="shortcut-desc">Next Lyric / Video</div>
+      </div>
+      <div class="shortcut-row">
+        <div class="shortcut-key">Spacebar</div>
+        <div class="shortcut-desc">Play/Pause Music</div>
+      </div>
+      <div class="shortcut-row">
+        <div class="shortcut-key">S</div>
+        <div class="shortcut-desc">Toggle Slow Lyrics</div>
+      </div>
+      <div class="shortcut-row">
+        <div class="shortcut-key">L</div>
+        <div class="shortcut-desc">Toggle Lyrics Panel</div>
+      </div>
+      <div class="shortcut-row">
+        <div class="shortcut-key">F</div>
+        <div class="shortcut-desc">Jump to Favorite Line</div>
+      </div>
+    </div>
+    <button onclick="$('#keyboardShortcutsModal').fadeOut();" aria-label="Close shortcuts">Close</button>
+  </div>
+</div>
+  
